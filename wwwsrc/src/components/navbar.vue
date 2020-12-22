@@ -1,12 +1,7 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <img
-          alt="logo"
-          src="../assets/img/cw-logo.png"
-          height="45"
-        />
       </div>
     </router-link>
     <button
@@ -22,14 +17,19 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
+        <li class="nav-item border rounded border-white">
           <router-link :to="{ name: 'Home' }" class="nav-link">
-            Home
+            Store
           </router-link>
         </li>
-        <li class="nav-item">
+        <li class="nav-item border rounded border-white">
           <router-link :to="{ name: 'About' }" class="nav-link">
             About
+          </router-link>
+        </li>
+        <li class="nav-item border rounded border-white">
+          <router-link :to="{ name: 'Profile' }" class="nav-link">
+            Profile
           </router-link>
         </li>
       </ul>
@@ -122,6 +122,9 @@ a:hover {
   text-transform: uppercase;
 }
 .nav-item .nav-link.router-link-exact-active{
-  color: var(--primary);
+  color: var(--white);
+}
+.navbar{
+  background-color: #E09D5F;
 }
 </style>
