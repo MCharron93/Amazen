@@ -18,5 +18,11 @@ namespace Amazen.Services
     {
       return _repo.GetAllProducts();
     }
+
+    public Product CreateProduct(Product newProduct)
+    {
+      newProduct.Id = _repo.CreateProduct(newProduct);
+      return newProduct;
+    }
   }
 }
