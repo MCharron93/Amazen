@@ -5,3 +5,14 @@
 --   picture VARCHAR(255) NOT NULL,
 --   PRIMARY KEY (id)
 -- )
+--  CREATE TABLE products(
+--   id INT NOT NULL AUTO_INCREMENT,
+--   name VARCHAR(255) NOT NULL,
+--   isAvailable TINYINT NOT NULL, 
+--   picture VARCHAR(255) NOT NULL,
+--   creatorId VARCHAR(255) NOT NULL,
+--   PRIMARY KEY (id),
+--   FOREIGN KEY (creatorId)
+--     REFERENCES profiles(id)
+--     ON DELETE CASCADE
+-- )

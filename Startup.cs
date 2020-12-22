@@ -67,6 +67,8 @@ namespace Amazen
       services.AddScoped<IDbConnection>(x => CreateDbConnection());
       services.AddTransient<ProfileService>();
       services.AddTransient<ProfileRepository>();
+      services.AddTransient<ProductsService>();
+      services.AddTransient<ProductsRepository>();
     }
 
     private IDbConnection CreateDbConnection()
