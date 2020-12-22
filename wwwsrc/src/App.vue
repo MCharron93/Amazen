@@ -9,7 +9,8 @@
       </transition>
     </router-view>
   </main>
-  <footer></footer>
+  <footer>
+  </footer>
 </template>
 
 <script>

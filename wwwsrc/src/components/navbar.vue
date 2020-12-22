@@ -1,41 +1,15 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark">
+    <span>
+    <div class="row justify-content-around px-3 mx-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center">
-      </div>
+      <h3 class="d-flex flex-column align-items-center col-8">
+        Amazen
+      </h3>
     </router-link>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarText"
-      aria-controls="navbarText"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon" />
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item border rounded border-white">
-          <router-link :to="{ name: 'Home' }" class="nav-link">
-            Store
-          </router-link>
-        </li>
-        <li class="nav-item border rounded border-white">
-          <router-link :to="{ name: 'About' }" class="nav-link">
-            About
-          </router-link>
-        </li>
-        <li class="nav-item border rounded border-white">
-          <router-link :to="{ name: 'Profile' }" class="nav-link">
-            Profile
-          </router-link>
-        </li>
-      </ul>
-      <span class="navbar-text">
+    <div class="col-2 navbar-text offset-2">
         <button
-          class="btn btn-outline-primary text-uppercase"
+          class="btn btn-outline-light text-uppercase"
           @click="login"
           v-if="!user.isAuthenticated"
         >
@@ -73,8 +47,49 @@
             </div>
           </div>
         </div>
-      </span>
+      </div>
     </div>
+
+  <div class="row justify-content-around px-3 mx-3">
+    <div class="col-12">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarText"
+      aria-controls="navbarText"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon" />
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item border rounded border-white">
+          <router-link :to="{ name: 'Home' }" class="nav-link">
+            Store
+          </router-link>
+        </li>
+        <li class="nav-item border rounded border-white">
+          <router-link :to="{ name: 'About' }" class="nav-link">
+            About
+          </router-link>
+        </li>
+        <li class="nav-item border rounded border-white">
+          <router-link :to="{ name: 'Profile' }" class="nav-link">
+            Profile
+          </router-link>
+        </li>
+        <li class="nav-item border rounded border-white">
+          <div class="nav-link">
+            &#43; Item
+            </div>
+        </li>
+      </ul>
+    </div>
+    </div>
+    </div>
+    </span>
   </nav>
 </template>
 

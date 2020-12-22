@@ -1,13 +1,23 @@
 <template>
   <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
   <!---NOTE Here is where the products v-if will be loaded in, this page will have an onMounted to get all products to be displayed here--->
+
   </div>
 </template>
 
 <script>
+import { computed } from "vue"
+import { AppState } from "../AppState"
 export default {
-  name: 'Home'
-
+  name: 'Home',
+setup(){
+  onMounted(() => {
+    productsService.getAvailableProducts()
+  })
+  return{
+    products: computed(() => AppState.availableProducts)
+  }
+}
 }
 </script>
 
