@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using Amazen.Repositories;
+using Amazen.Services;
 using CodeWorks.Auth0Provider;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -48,8 +50,8 @@ namespace Amazen
       {
         builder
         .WithOrigins(new string[]{
-        "https://localhost:8080",
-        "https://localhost:8081"
+        "http://localhost:8080",
+        "http://localhost:8081"
 
         }).AllowAnyMethod()
         .AllowAnyHeader()
@@ -63,8 +65,8 @@ namespace Amazen
         c.SwaggerDoc("v1", new OpenApiInfo { Title = "Amazen", Version = "v1" });
       });
       services.AddScoped<IDbConnection>(x => CreateDbConnection());
-      //   services.AddTransient<ProfileService>();
-      //   services.AddTransient<ProfileRepository>();
+      services.AddTransient<ProfileService>();
+      services.AddTransient<ProfileRepository>();
     }
 
     private IDbConnection CreateDbConnection()
@@ -88,8 +90,11 @@ namespace Amazen
 
       app.UseRouting();
 
+
       app.UseAuthentication();
       app.UseAuthorization();
+      app.UseDefaultFiles();
+      app.UseStaticFiles();
 
       app.UseEndpoints(endpoints =>
       {
