@@ -4,18 +4,18 @@
 </template>
 
 <script>
-import { computed, onMounted } from "vue"
-import { AppState } from "../AppState"
-import productsService from "../services/ProductsService"
+import { computed, onMounted } from 'vue'
+import { AppState } from '../AppState'
+import { productsService } from '../services/ProductsService'
 export default {
   name: 'Home',
-  setup(){
-  onMounted(() => {
-    productsService.getAvailableProducts()
-  })
-  return{
-    products: computed(() => AppState.availableProducts)
-  }
+  setup() {
+    onMounted(() => {
+      productsService.getAvailableProducts()
+    })
+    return {
+      products: computed(() => AppState.availableProducts)
+    }
   }
 }
 </script>
