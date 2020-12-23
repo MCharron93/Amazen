@@ -24,5 +24,10 @@ namespace Amazen.Services
       newProduct.Id = _repo.CreateProduct(newProduct);
       return newProduct;
     }
+
+    public Product GetSingleProduct(int id)
+    {
+      return _repo.GetSingleProduct(id);
+    }
   }
 }

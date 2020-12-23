@@ -33,6 +33,19 @@ namespace Amazen.Controllers
       }
     }
 
+    [HttpGet("/{id}")]
+    public ActionResult<Product> GetSingleProduct(int id)
+    {
+      try
+      {
+        return Ok(_pts.GetSingleProduct(id));
+      }
+      catch (System.Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
     [HttpPost]
     [Authorize]
     public async Task<ActionResult<Product>> CreateProduct([FromBody] Product newProduct)
@@ -44,10 +57,9 @@ namespace Amazen.Controllers
         Product created = _pts.CreateProduct(newProduct);
         return Ok(created);
       }
-      catch (System.Exception)
+      catch (System.Exception e)
       {
-
-        throw;
+        return BadRequest(e.Message);
       }
     }
 

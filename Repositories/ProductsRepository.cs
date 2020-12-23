@@ -32,5 +32,11 @@ namespace Amazen.Repositories
       ";
       return _db.ExecuteScalar<int>(sql, newProduct);
     }
+
+    internal Product GetSingleProduct(int id)
+    {
+      string sql = "SELECT * FROM products WEHRE id = @Id";
+      return _db.QueryFirstOrDefault<Product>(sql);
+    }
   }
 }
