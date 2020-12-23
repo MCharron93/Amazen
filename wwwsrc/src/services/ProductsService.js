@@ -15,7 +15,7 @@ class ProductsService {
 
   async getSingleProduct(productId) {
     try {
-      const res = await api.get('api/products/' + productId)
+      const res = await api.get('api/products/' + productId + '/availability')
       logger.log(res.data)
     } catch (error) {
       logger.log(error)

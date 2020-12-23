@@ -79,7 +79,7 @@ namespace Amazen.Controllers
       }
     }
 
-    [HttpPut("{id}")]
+    [HttpPut("{id}/availability")]
     [Authorize]
     public async Task<ActionResult<Product>> toggleAvailability(int id, [FromBody] Product editData)
     {
