@@ -33,7 +33,7 @@ namespace Amazen.Controllers
       }
     }
 
-    [HttpGet("/{id}")]
+    [HttpGet("{id}")]
     public ActionResult<Product> GetSingleProduct(int id)
     {
       try
@@ -56,6 +56,22 @@ namespace Amazen.Controllers
         newProduct.CreatorId = userInfo.Id;
         Product created = _pts.CreateProduct(newProduct);
         return Ok(created);
+      }
+      catch (System.Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
+    [HttpPut("{id}")]
+    [Authorize]
+    public async Task<ActionResult<Product>> EditProduct(int id, [FromBody] Product editData)
+    {
+      try
+      {
+        Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+        editData.Id = id;
+        return Ok(_pts.Edit(editData, userInfo));
       }
       catch (System.Exception e)
       {

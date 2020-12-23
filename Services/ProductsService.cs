@@ -29,5 +29,22 @@ namespace Amazen.Services
     {
       return _repo.GetSingleProduct(id);
     }
+
+    public string Edit(Product editData, Profile userInfo)
+    {
+      Product original = GetSingleProduct(editData.Id);
+      if (original.CreatorId == userInfo.Id)
+      {
+        editData.Name = editData.Name == null ? original.Name : editData.Name;
+        editData.Description = editData.Description == null ? original.Description : editData.Description;
+        editData.Picture = editData.Picture == null ? original.Picture : editData.Picture;
+        _repo.Edit(editData);
+        return "Successfully Updated";
+      }
+      else
+      {
+        throw new Exception("Access Denied.");
+      }
+    }
   }
 }

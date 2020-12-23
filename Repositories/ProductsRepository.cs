@@ -35,8 +35,21 @@ namespace Amazen.Repositories
 
     internal Product GetSingleProduct(int id)
     {
-      string sql = "SELECT * FROM products WEHRE id = @Id";
-      return _db.QueryFirstOrDefault<Product>(sql);
+      string sql = @"SELECT * FROM products WHERE id = @id";
+      return _db.QueryFirstOrDefault<Product>(sql, new { id });
+    }
+
+    internal void Edit(Product editData)
+    {
+      string sql = @"
+      UPDATE products
+      SET 
+      name = @Name,
+      description = @Description,
+      picture = @Picture,
+      isAvailable = @IsAvailable
+      WHERE id = @Id;";
+      _db.Execute(sql, editData);
     }
   }
 }
