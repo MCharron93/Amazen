@@ -79,5 +79,21 @@ namespace Amazen.Controllers
       }
     }
 
+    [HttpPut("{id}")]
+    [Authorize]
+    public async Task<ActionResult<Product>> toggleAvailability(int id, [FromBody] Product editData)
+    {
+      try
+      {
+        Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+        editData.Id = id;
+        return Ok(_pts.toggleAvailable(editData, userInfo));
+      }
+      catch (System.Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
   }
 }

@@ -46,7 +46,16 @@ namespace Amazen.Repositories
       SET 
       name = @Name,
       description = @Description,
-      picture = @Picture,
+      picture = @Picture
+      WHERE id = @Id;";
+      _db.Execute(sql, editData);
+    }
+
+    internal void toggleAvailability(Product editData)
+    {
+      string sql = @"
+      UPDATE products 
+      SET 
       isAvailable = @IsAvailable
       WHERE id = @Id;";
       _db.Execute(sql, editData);

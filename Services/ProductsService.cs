@@ -46,5 +46,30 @@ namespace Amazen.Services
         throw new Exception("Access Denied.");
       }
     }
+
+    public string toggleAvailable(Product editData, Profile userInfo)
+    {
+      Product original = GetSingleProduct(editData.Id);
+      if (original.CreatorId == userInfo.Id)
+      {
+        if (editData.IsAvailable == true)
+        {
+          editData.IsAvailable = false;
+          _repo.toggleAvailability(editData);
+          return "Item is Out of Stock";
+        }
+        else if (editData.IsAvailable == false)
+        {
+          editData.IsAvailable = true;
+          _repo.toggleAvailability(editData);
+          return "Item is In Stock";
+        }
+        return "The item has been updated";
+      }
+      else
+      {
+        return "Access Denied.";
+      }
+    }
   }
 }
