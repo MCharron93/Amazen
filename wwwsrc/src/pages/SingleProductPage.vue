@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="container-fluid row justify-content-center">
     <product-component />
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <div class="row">
+  <div class="home container-fluid flex-grow-1 d-flex flex-column align-items-center justify-content-center">
+    <div class="row mx-3">
       <products-component v-for="p in products" :product-prop="p" :key="p.id" />
     </div>
   </div>
