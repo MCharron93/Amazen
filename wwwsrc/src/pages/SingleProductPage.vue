@@ -1,12 +1,21 @@
 <template>
   <div class="row">
-    Here is the Single Product View
+    <product-component />
   </div>
 </template>
 
 <script>
+import { computed } from 'vue'
+import { AppState } from '../AppState'
+import { productComponent } from '../components/SingleProductComponent'
 export default {
-
+  name: 'SingleProductPage',
+  components: { productComponent },
+  setup() {
+    return {
+      singleProduct: computed(() => AppState.singleProduct)
+    }
+  }
 }
 </script>
 

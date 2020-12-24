@@ -15,8 +15,8 @@ export default {
   components: { ProductsComponent },
   name: 'Home',
   setup() {
-    onMounted(() => {
-      productsService.getAvailableProducts()
+    onMounted(async() => {
+      await productsService.getAvailableProducts()
     })
     return {
       products: computed(() => AppState.availableProducts)

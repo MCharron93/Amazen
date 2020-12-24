@@ -1,6 +1,11 @@
 <template>
   <div class="products-component col-4 card" @click="getSingleProduct(productProp.id)">
-    {{ productProp.name }}
+    <h3>
+      {{ productProp.name }}
+    </h3>
+    <div>
+      <img class="img-fluid" :src="(productProp.picture)" alt="Responsive Image">
+    </div>
   </div>
 </template>
 
@@ -20,7 +25,7 @@ export default {
       product: computed(() => props.productProp),
       getSingleProduct(productId) {
         productsService.getSingleProduct(productId)
-        router.push({ name: 'SingleProductPage' })
+        router.push({ name: 'SingleProduct' })
       }
     }
   }

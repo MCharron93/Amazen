@@ -7,7 +7,6 @@ class ProductsService {
     try {
       const res = await api.get('api/products')
       AppState.availableProducts = res.data
-      logger.log(AppState.availableProducts)
     } catch (error) {
       logger.log(error)
     }
@@ -15,8 +14,8 @@ class ProductsService {
 
   async getSingleProduct(productId) {
     try {
-      const res = await api.get('api/products/' + productId + '/availability')
-      logger.log(res.data)
+      const res = await api.get('api/products/' + productId)
+      AppState.singleProduct = res.data
     } catch (error) {
       logger.log(error)
     }
