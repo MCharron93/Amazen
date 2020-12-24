@@ -19,7 +19,7 @@
       <button class="col-2 btn btn-success">
         Add to Wishlist?
       </button>
-      <button class="col-2 btn btn-secondary">
+      <button class="col-2 btn btn-secondary" v-if="profile.id === product.creatorId">
         Avaialbility
       </button>
     </div>
@@ -37,6 +37,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5>
+                Name:
                 <input type="text" class="modal-title" id="exampleModalLongTitle" :placeholder="product.name" v-model="state.editData.name">
               </h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -44,7 +45,10 @@
               </button>
             </div>
             <div class="modal-body">
+              Description:
               <textarea cols="60" rows="10" :placeholder="product.description" v-model="state.editData.description"></textarea>
+              Image URL:
+              <input type="text" :placeholder="product.picture" v-model="state.editData.picture">
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">

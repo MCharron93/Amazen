@@ -25,8 +25,7 @@ const routes = [
   {
     path: '/SingleProduct/:id',
     name: 'SingleProduct',
-    component: loadPage('SingleProductPage'),
-    beforeEnter: authGuard
+    component: loadPage('SingleProductPage')
   }
 ]
 
