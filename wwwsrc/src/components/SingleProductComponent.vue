@@ -15,6 +15,14 @@
     </div>
     <img class="img-fluid" :src="(product.picture)" alt="Responsive Image">
     <p>{{ product.description }}</p>
+    <div class="row px-3 justify-content-between">
+      <button class="col-2 btn btn-success">
+        Add to Wishlist?
+      </button>
+      <button class="col-2 btn btn-secondary">
+        Avaialbility
+      </button>
+    </div>
 
     <!-- Modal form for Editing item -->
     <div class="modal fade"
