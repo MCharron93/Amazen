@@ -1,22 +1,83 @@
 <template>
-  <div class="productComponent col-8 card">
-    <h2>
-      {{ product.name }}
-    </h2>
+  <div class="productComponent col-8 card py-3">
+    <div class="row justify-content-between px-3">
+      <h2>
+        {{ product.name }}
+      </h2>
+      <div v-if="profile.id === product.creatorId">
+        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#productEditForm">
+          Edit?
+        </button>&nbsp;&nbsp;&nbsp;
+        <button class="btn btn-secondary btn-sm">
+          &times;
+        </button>
+      </div>
+    </div>
     <img class="img-fluid" :src="(product.picture)" alt="Responsive Image">
     <p>{{ product.description }}</p>
+
+    <!-- Modal form for Editing item -->
+    <div class="modal fade"
+         id="productEditForm"
+         tabindex="-1"
+         role="dialog"
+         aria-labelledby="productEditFormTitle"
+         aria-hidden="true"
+    >
+      <form @submit.prevent="edit()">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5>
+                <input type="text" class="modal-title" id="exampleModalLongTitle" :placeholder="product.name" v-model="state.editData.name">
+              </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <textarea cols="60" rows="10" :placeholder="product.description" v-model="state.editData.description"></textarea>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                Close
+              </button>
+              <button class="btn btn-primary" type="submit">
+                Save changes
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, reactive } from 'vue'
 import { AppState } from '../AppState'
+import { useRoute } from 'vue-router'
+import { productsService } from '../services/ProductsService'
 
 export default {
   name: 'ProductComponent',
+  // props: {
+  //   itemProp: Object
+  // },
   setup() {
+    const route = useRoute()
+    const state = reactive({
+      editData: {
+        id: route.params.id
+      }
+    })
     return {
-      product: computed(() => AppState.singleProduct)
+      state,
+      profile: computed(() => AppState.profile),
+      product: computed(() => AppState.singleProduct),
+      edit() {
+        productsService.editProduct(state.editData.id, state.editData)
+      }
     }
   }
 }

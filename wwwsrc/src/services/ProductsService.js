@@ -20,6 +20,15 @@ class ProductsService {
       logger.log(error)
     }
   }
+
+  async editProduct(productId, editData) {
+    try {
+      logger.log(editData, productId)
+      await api.put('api/products/' + productId, editData)
+    } catch (error) {
+      logger.log(error)
+    }
+  }
 }
 
 export const productsService = new ProductsService()
