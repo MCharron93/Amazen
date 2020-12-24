@@ -5,13 +5,20 @@
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { AppState } from '../AppState'
 import { productComponent } from '../components/SingleProductComponent'
+import { useRoute } from 'vue-router'
+import { productsService } from '../services/ProductsService'
+
 export default {
   name: 'SingleProductPage',
   components: { productComponent },
   setup() {
+    const route = useRoute()
+    onMounted(async() => {
+      await productsService.getSingleProduct(route.params.id)
+    })
     return {
       singleProduct: computed(() => AppState.singleProduct)
     }
