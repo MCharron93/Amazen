@@ -23,9 +23,9 @@ export default {
     const router = useRouter()
     return {
       product: computed(() => props.productProp),
-      getSingleProduct(productId) {
-        productsService.getSingleProduct(productId)
-        router.push({ name: 'SingleProduct' })
+      getSingleProduct() {
+        router.push({ name: 'SingleProduct', params: { id: props.productProp.id } })
+        productsService.getSingleProduct(props.productProp.id)
       }
     }
   }

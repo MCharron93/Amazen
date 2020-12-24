@@ -1,23 +1,21 @@
 <template>
   <div class="productComponent col-8 card">
     <h2>
-      {{ productProp.name }}
+      {{ product.name }}
     </h2>
-    <img class="img-fluid" :src="(productProp.picture)" alt="Responsive Image">
-    <p>{{ productProp.description }}</p>
+    <img class="img-fluid" :src="(product.picture)" alt="Responsive Image">
+    <p>{{ product.description }}</p>
   </div>
 </template>
 
 <script>
 import { computed } from 'vue'
+import { AppState } from '../AppState'
 export default {
   name: 'ProductComponent',
-  props: {
-    productProp: Object
-  },
-  setup(props) {
+  setup() {
     return {
-      product: computed(() => props.productProp)
+      product: computed(() => AppState.singleProduct)
     }
   }
 }
