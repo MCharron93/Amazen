@@ -49,8 +49,7 @@ namespace Amazen.Services
 
     public string toggleAvailable(Product editData, Profile userInfo)
     {
-      Product original = GetSingleProduct(editData.Id);
-      if (original.CreatorId == userInfo.Id)
+      if (editData.CreatorId == userInfo.Id)
       {
         if (editData.IsAvailable == true)
         {
@@ -62,7 +61,7 @@ namespace Amazen.Services
         {
           editData.IsAvailable = true;
           _repo.toggleAvailability(editData);
-          return "Item is In Stock";
+          return "Item is Back in Stock";
         }
         return "The item has been updated";
       }

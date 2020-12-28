@@ -16,11 +16,14 @@
     <img class="img-fluid" :src="(product.picture)" alt="Responsive Image">
     <p>{{ product.description }}</p>
     <div class="row px-3 justify-content-between">
-      <button class="col-2 btn btn-success">
+      <button class="col-2 btn btn-success" v-if="product.isAvailable">
         Add to Wishlist?
       </button>
+      <h5 v-else>
+        Item Out of Stock
+      </h5>
       <button class="col-2 btn btn-secondary" v-if="profile.id === product.creatorId" @click="toggleAvailability()">
-        Avaialbility
+        Availability
       </button>
     </div>
 

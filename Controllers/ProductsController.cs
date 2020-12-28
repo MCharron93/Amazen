@@ -81,13 +81,13 @@ namespace Amazen.Controllers
 
     [HttpPut("{id}/availability")]
     [Authorize]
-    public async Task<ActionResult<Product>> toggleAvailability(int id, [FromBody] Product editData)
+    public async Task<ActionResult<Product>> toggleAvailability(int id)
     {
       try
       {
         Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
-        editData.Id = id;
-        return Ok(_pts.toggleAvailable(editData, userInfo));
+        Product foundProduct = _pts.GetSingleProduct(id);
+        return Ok(_pts.toggleAvailable(foundProduct, userInfo));
       }
       catch (System.Exception e)
       {
