@@ -8,7 +8,7 @@
         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#productEditForm">
           Edit?
         </button>&nbsp;&nbsp;&nbsp;
-        <button class="btn btn-secondary btn-sm">
+        <button class="btn btn-secondary btn-sm" @click="deleteItem()">
           &times;
         </button>
       </div>
@@ -19,7 +19,7 @@
       <button class="col-2 btn btn-success">
         Add to Wishlist?
       </button>
-      <button class="col-2 btn btn-secondary" v-if="profile.id === product.creatorId">
+      <button class="col-2 btn btn-secondary" v-if="profile.id === product.creatorId" @click="toggleAvailability()">
         Avaialbility
       </button>
     </div>
@@ -70,6 +70,7 @@ import { computed, reactive } from 'vue'
 import { AppState } from '../AppState'
 import { useRoute } from 'vue-router'
 import { productsService } from '../services/ProductsService'
+import { logger } from '../utils/Logger'
 
 export default {
   name: 'ProductComponent',
@@ -89,6 +90,14 @@ export default {
       product: computed(() => AppState.singleProduct),
       edit() {
         productsService.editProduct(state.editData.id, state.editData)
+      },
+      deleteItem() {
+        logger.log(route.params.id)
+        productsService.delete(route.params.id)
+      },
+      toggleAvailability() {
+        logger.log(route.params.id)
+        productsService.toggleAvailability(route.params.id)
       }
     }
   }
