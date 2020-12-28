@@ -23,7 +23,6 @@ class ProductsService {
 
   async editProduct(productId, editData) {
     try {
-      // logger.log(editData, productId)
       await api.put('api/products/' + productId, editData)
     } catch (error) {
       logger.log(error)
@@ -41,8 +40,7 @@ class ProductsService {
 
   async toggleAvailability(productId) {
     try {
-      const res = await api.put('api/products/' + productId + '/availability')
-      logger.log(res.data)
+      await api.put('api/products/' + productId + '/availability')
     } catch (error) {
       logger.log(error)
     }

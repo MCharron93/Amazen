@@ -99,8 +99,8 @@ export default {
         productsService.delete(route.params.id)
       },
       toggleAvailability() {
-        logger.log(route.params.id)
         productsService.toggleAvailability(route.params.id)
+        productsService.getSingleProduct(route.params.id)
       }
     }
   }
