@@ -12,6 +12,16 @@ class ProductsService {
     }
   }
 
+  async createProduct(newProduct) {
+    try {
+      const res = await api.post('api/products', newProduct)
+      logger.log(res.data)
+      this.getAvailableProducts()
+    } catch (error) {
+      logger.log(error)
+    }
+  }
+
   async getSingleProduct(productId) {
     try {
       const res = await api.get('api/products/' + productId)
