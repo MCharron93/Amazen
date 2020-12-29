@@ -27,6 +27,7 @@ namespace Amazen.Controllers
       try
       {
         Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+        newWish.Creator = userInfo;
         newWish.CreatorId = userInfo.Id;
         Wish created = _ws.CreateWish(newWish);
         return Ok(created);
@@ -38,11 +39,13 @@ namespace Amazen.Controllers
     }
 
     [HttpGet]
-    public ActionResult<IEnumerable<Wish>> GetAllWishs()
+    public async Task<ActionResult<IEnumerable<Wish>>> GetAllWishsAsync()
     {
       try
       {
-        return Ok(_ws.GetAllWishs());
+        Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+        string userId = userInfo.Id;
+        return Ok(_ws.GetAllWishs(userId));
       }
       catch (System.Exception e)
       {
@@ -56,6 +59,21 @@ namespace Amazen.Controllers
       try
       {
         return Ok(_ws.GetSingleWish(id));
+      }
+      catch (System.Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
+    [HttpDelete("{id}")]
+    [Authorize]
+    public async Task<ActionResult<string>> Delete(int id)
+    {
+      try
+      {
+        Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+        return Ok(_ws.Delete(id, userInfo.Id));
       }
       catch (System.Exception e)
       {

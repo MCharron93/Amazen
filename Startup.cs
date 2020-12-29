@@ -69,6 +69,8 @@ namespace Amazen
       services.AddTransient<ProfileRepository>();
       services.AddTransient<ProductsService>();
       services.AddTransient<ProductsRepository>();
+      services.AddTransient<WishService>();
+      services.AddTransient<WishRepository>();
     }
 
     private IDbConnection CreateDbConnection()

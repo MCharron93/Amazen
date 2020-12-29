@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Amazen.Models;
 using Amazen.Repositories;
 
@@ -19,12 +20,18 @@ namespace Amazen.Services
       return newWish;
     }
 
-    internal object GetAllWishs()
+    public IEnumerable<Wish> GetAllWishs(string userId)
+    {
+
+      return _repo.GetAllWishs(userId);
+    }
+
+    internal object GetSingleWish(int id)
     {
       throw new NotImplementedException();
     }
 
-    internal object GetSingleWish(int id)
+    internal object Delete(int id1, string id2)
     {
       throw new NotImplementedException();
     }
