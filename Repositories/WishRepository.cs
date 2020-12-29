@@ -28,6 +28,19 @@ namespace Amazen.Repositories
       return _db.ExecuteScalar<int>(sql, newWish);
     }
 
+    internal Wish GetSingleWish(int id)
+    {
+      string sql = "SELECT * FROM wishLists WHERE id = @id";
+      return _db.QueryFirstOrDefault<Wish>(sql, new { id });
+    }
+
+    internal bool Delete(int id)
+    {
+      string sql = "DELETE FROM wishLists WHERE id = @Id";
+      int valid = _db.Execute(sql, new { id });
+      return valid > 0;
+    }
+
     internal IEnumerable<Wish> GetAllWishs(string userId)
     {
       string sql = populateCreator + "WHERE creatorId = @userId";

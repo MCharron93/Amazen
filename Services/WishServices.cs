@@ -26,14 +26,23 @@ namespace Amazen.Services
       return _repo.GetAllWishs(userId);
     }
 
-    internal object GetSingleWish(int id)
+    public Wish GetSingleWish(int id)
     {
-      throw new NotImplementedException();
+      return _repo.GetSingleWish(id);
     }
 
-    internal object Delete(int id1, string id2)
+    public string Delete(int id, string userId)
     {
-      throw new NotImplementedException();
+      Wish original = _repo.GetSingleWish(id);
+      if (original == null || original.CreatorId != userId)
+      {
+        throw new Exception("Invalid Request!");
+      }
+      if (_repo.Delete(id))
+      {
+        return "Successfully Deleted Wishlist";
+      }
+      return "Unsuccessful in Deleting Wishlist";
     }
   }
 }
