@@ -1,3 +1,4 @@
+using System;
 using Amazen.Models;
 using Amazen.Repositories;
 
@@ -16,6 +17,16 @@ namespace Amazen.Services
     {
       newWish.Id = _repo.CreateWish(newWish);
       return newWish;
+    }
+
+    internal object GetAllWishs()
+    {
+      throw new NotImplementedException();
+    }
+
+    internal object GetSingleWish(int id)
+    {
+      throw new NotImplementedException();
     }
   }
 }

@@ -70,5 +70,19 @@ namespace Amazen.Services
         return "Access Denied.";
       }
     }
+
+    internal string Delete(int id, string userId)
+    {
+      Product original = _repo.GetSingleProduct(id);
+      if (original == null || original.CreatorId != userId)
+      {
+        throw new Exception("Invalid Request!");
+      }
+      if (_repo.Delete(id))
+      {
+        return "Successfully Deleted Item.";
+      }
+      return "Unsucessful in Deleting Item.";
+    }
   }
 }

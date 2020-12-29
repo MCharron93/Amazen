@@ -60,5 +60,12 @@ namespace Amazen.Repositories
       WHERE id = @Id;";
       _db.Execute(sql, editData);
     }
+
+    internal bool Delete(int id)
+    {
+      string sql = "DELETE FROM wishLists WHERE id = @Id";
+      int valid = _db.Execute(sql, new { id });
+      return valid > 0;
+    }
   }
 }

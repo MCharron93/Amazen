@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Amazen.Models;
 using Amazen.Services;
@@ -29,6 +30,32 @@ namespace Amazen.Controllers
         newWish.CreatorId = userInfo.Id;
         Wish created = _ws.CreateWish(newWish);
         return Ok(created);
+      }
+      catch (System.Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
+    [HttpGet]
+    public ActionResult<IEnumerable<Wish>> GetAllWishs()
+    {
+      try
+      {
+        return Ok(_ws.GetAllWishs());
+      }
+      catch (System.Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
+    [HttpGet("{id}")]
+    public ActionResult<Wish> GetSingleWish(int id)
+    {
+      try
+      {
+        return Ok(_ws.GetSingleWish(id));
       }
       catch (System.Exception e)
       {

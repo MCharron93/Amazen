@@ -18,3 +18,31 @@
 -- )
 -- ALTER TABLE products
 -- ADD description VARCHAR(255) NOT NULL
+-- CREATE TABLE wishLists(
+--   id INT NOT NULL AUTO_INCREMENT,
+--   name VARCHAR(255) NOT NULL,
+--   creatorId VARCHAR(255) NOT NULL,
+--   PRIMARY KEY (id),
+--   FOREIGN KEY (creatorId)
+--     REFERENCES profiles(id)
+--     ON DELETE CASCADE
+-- )
+-- CREATE TABLE productWish(
+--   id INT NOT NULL AUTO_INCREMENT,
+--   productId INT NOT NULL,
+--   wishListId INT NOT NULL,
+--   creatorId VARCHAR(255) NOT NULL,
+--   PRIMARY KEY (id),
+
+--   FOREIGN KEY (productId)
+--   REFERENCES products(id)
+--   ON DELETE CASCADE,
+
+--   FOREIGN KEY (wishListId)
+--   REFERENCES wishLists(id)
+--   ON DELETE CASCADE,
+
+--   FOREIGN KEY (creatorId)
+--   REFERENCES profiles(id)
+--   ON DELETE CASCADE
+-- )

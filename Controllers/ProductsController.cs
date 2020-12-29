@@ -95,5 +95,19 @@ namespace Amazen.Controllers
       }
     }
 
+    [HttpDelete("{id}")]
+    [Authorize]
+    public async Task<ActionResult<string>> Delete(int id)
+    {
+      try
+      {
+        Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+        return Ok(_pts.Delete(id, userInfo.Id));
+      }
+      catch (System.Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
   }
 }
