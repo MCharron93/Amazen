@@ -63,7 +63,7 @@ namespace Amazen.Repositories
 
     internal bool Delete(int id)
     {
-      string sql = "DELETE FROM wishLists WHERE id = @Id";
+      string sql = "DELETE FROM products WHERE id = @Id";
       int valid = _db.Execute(sql, new { id });
       return valid > 0;
     }
