@@ -16,7 +16,7 @@
     <img class="img-fluid" :src="(product.picture)" alt="Responsive Image">
     <p>{{ product.description }}</p>
     <div class="row px-3 justify-content-between">
-      <button class="col-2 btn btn-success" v-if="product.isAvailable">
+      <button class="col-2 btn btn-success" v-if="product.isAvailable" @click="addToWish()">
         Add to Wishlist?
       </button>
       <h5 v-else>
@@ -101,6 +101,9 @@ export default {
       toggleAvailability() {
         productsService.toggleAvailability(route.params.id)
         productsService.getSingleProduct(route.params.id)
+      },
+      addToWish() {
+        productsService.addToWish(route.params.id)
       }
     }
   }

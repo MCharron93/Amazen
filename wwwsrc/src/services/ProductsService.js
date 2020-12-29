@@ -55,6 +55,15 @@ class ProductsService {
       logger.log(error)
     }
   }
+
+  async addToWish(productId) {
+    try {
+      const res = await api.post('')
+      logger.log(res.data)
+    } catch (error) {
+      logger.log(error)
+    }
+  }
 }
 
 export const productsService = new ProductsService()
