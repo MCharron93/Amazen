@@ -10,4 +10,8 @@ namespace Amazen.Models
     public string CreatorId { get; set; }
   }
   // In here you will add the ViewModel for the WishListProduct : Prodcuct here with a public prop int of WishListProductId from the relationship table
+  public class ProudctWislListViewModel : Product
+  {
+    public int ProductWishListId { get; set; }
+  }
 }
