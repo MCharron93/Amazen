@@ -77,9 +77,6 @@ import { logger } from '../utils/Logger'
 
 export default {
   name: 'ProductComponent',
-  // props: {
-  //   itemProp: Object
-  // },
   setup() {
     const route = useRoute()
     const state = reactive({
