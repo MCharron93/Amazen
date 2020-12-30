@@ -26,6 +26,11 @@ const routes = [
     path: '/SingleProduct/:id',
     name: 'SingleProduct',
     component: loadPage('SingleProductPage')
+  },
+  {
+    path: '/WishList/:id',
+    name: 'WishList',
+    component: loadPage('WishListPage')
   }
 ]
 
