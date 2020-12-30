@@ -14,10 +14,12 @@ namespace Amazen.Controllers
   public class WishController : ControllerBase
   {
     private readonly WishService _ws;
+    private readonly ProductWishListService _pwl;
 
-    public WishController(WishService ws)
+    public WishController(WishService ws, ProductWishListService pwl)
     {
       _ws = ws;
+      _pwl = pwl;
     }
 
     [HttpPost]
@@ -66,6 +68,20 @@ namespace Amazen.Controllers
       }
     }
 
+    [HttpGet("{id}/products")]
+    [Authorize]
+    public ActionResult<ProductWishList> GetProductsByWishId(int id)
+    {
+      try
+      {
+        return Ok(_pwl.GetProductsByWishId(id));
+      }
+      catch (System.Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
     [HttpDelete("{id}")]
     [Authorize]
     public async Task<ActionResult<string>> Delete(int id)
@@ -80,5 +96,6 @@ namespace Amazen.Controllers
         return BadRequest(e.Message);
       }
     }
+
   }
 }

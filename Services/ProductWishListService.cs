@@ -18,5 +18,10 @@ namespace Amazen.Services
       newPWL.Id = _repo.Create(newPWL);
       return newPWL;
     }
+
+    internal object GetProductsByWishId(int id)
+    {
+      throw new NotImplementedException();
+    }
   }
 }

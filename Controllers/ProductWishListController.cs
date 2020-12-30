@@ -26,7 +26,7 @@ namespace Amazen.Controllers
       {
         Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
         newPWL.CreatorId = userInfo.Id;
-        Product created = _pwl.Create(newPWL);
+        ProductWishList created = _pwl.Create(newPWL);
         return Ok(created);
       }
       catch (System.Exception e)
@@ -35,6 +35,7 @@ namespace Amazen.Controllers
       }
     }
 
+    //  Delete will go in here, get by Id will got somewhere else
 
   }
 }
