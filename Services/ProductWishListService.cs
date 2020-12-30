@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Amazen.Models;
 using Amazen.Repositories;
 
@@ -19,9 +20,9 @@ namespace Amazen.Services
       return newPWL;
     }
 
-    internal object GetProductsByWishId(int id)
+    internal IEnumerable<Product> GetProductsByWishId(int wishId)
     {
-      throw new NotImplementedException();
+      return _repo.GetProductsByWishList(wishId);
     }
   }
 }

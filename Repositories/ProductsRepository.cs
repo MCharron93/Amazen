@@ -9,6 +9,7 @@ namespace Amazen.Repositories
   public class ProductsRepository
   {
     private readonly IDbConnection _db;
+    private readonly string populateCreator = "SELECT product.*, profile.* FROM products product INNER JOIN profiles profile ON product.creatorId = profile.Id ";
 
     public ProductsRepository(IDbConnection db)
     {
@@ -17,8 +18,8 @@ namespace Amazen.Repositories
 
     public IEnumerable<Product> GetAllProducts()
     {
-      string sql = "SELECT * FROM products WHERE isAvailable = 1";
-      return _db.Query<Product>(sql);
+      string sql = populateCreator + "WHERE isAvailable = 1";
+      return _db.Query<Product, Profile, Product>(sql, (product, profile) => { product.Creator = profile; return product; }, splitOn: "id");
     }
 
     internal int CreateProduct(Product newProduct)

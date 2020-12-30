@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
 using Amazen.Models;
 using Dapper;
@@ -23,6 +24,20 @@ namespace Amazen.Repositories
       (@ProductId, @WishListId, @CreatorId);
       SELECT LAST_INSERT_ID();";
       return _db.ExecuteScalar<int>(sql, newPWL);
+    }
+
+    internal IEnumerable<Product> GetProductsByWishList(int wishId)
+    {
+      string sql = @"
+      SELECT pd.*,
+      pwl.id as ProductWishListId,
+      p.*
+      FROM productwish pwl
+      JOIN products pd ON pd.id = pwl.productId
+      JOIN profiles p ON p.id = pwl.creatorId
+      WHERE wishListId = @wishId;
+      ";
+      return _db.Query<ProudctWislListViewModel, Profile, ProudctWislListViewModel>(sql, (product, profile) => { product.Creator = profile; return product; }, new { wishId }, splitOn: "id");
     }
   }
 }

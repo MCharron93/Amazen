@@ -68,13 +68,13 @@ namespace Amazen.Controllers
       }
     }
 
-    [HttpGet("{id}/products")]
+    [HttpGet("{wishId}/products")]
     [Authorize]
-    public ActionResult<ProductWishList> GetProductsByWishId(int id)
+    public ActionResult<IEnumerable<Product>> GetProductsByWishId(int wishId)
     {
       try
       {
-        return Ok(_pwl.GetProductsByWishId(id));
+        return Ok(_pwl.GetProductsByWishId(wishId));
       }
       catch (System.Exception e)
       {
